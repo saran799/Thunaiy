@@ -148,6 +148,22 @@ describe('viewer flow', () => {
     expect(screen.queryByRole('dialog')).toBeNull();
   });
 
+  it('restores saved progress when the viewer is opened again', async () => {
+    const { services, state } = await signedInViewerState();
+    const first = renderViewer(state, services);
+
+    fireEvent.click(await screen.findByLabelText('Show guidance for 2. Applicant Full Name'));
+    fireEvent.click(await screen.findByRole('button', { name: 'Mark as done' }));
+    await screen.findByText('1 of 6 highlighted fields marked done');
+    first.unmount();
+
+    // Re-opening the same form must show the progress recorded on the backend.
+    renderViewer(state, services);
+    fireEvent.click(await screen.findByLabelText('Show guidance for 2. Applicant Full Name'));
+    expect(await screen.findByText('1 of 6 highlighted fields marked done')).toBeTruthy();
+    expect(await screen.findByRole('button', { name: 'Marked as done' })).toBeTruthy();
+  });
+
   it('marks the selected field while its guidance is open', async () => {
     const { services, state } = await signedInViewerState();
     renderViewer(state, services);
