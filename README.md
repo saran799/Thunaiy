@@ -82,13 +82,19 @@ and register its artwork in `features/viewer/artwork.tsx`.
 npm run test
 ```
 
-Covers bank selection and form filtering, purpose filtering, purpose → field
-applicability, viewer document resolution (including versions without artwork and
-language fallback), authentication policy (validation, expiry, attempt limits,
-resend cooldown, logout, session restore), protected routes, the registration →
-OTP → language flow, saved-form creation/continuation/progress/completion, the
-viewer's guidance and completion path, app-state persistence rules and i18n key
-parity.
+`src/__tests__/` covers:
+
+- **Catalogue** — bank selection and form filtering, purpose filtering, directory search data.
+- **Guidance** — purpose → field applicability per purpose, required counts, document
+  resolution, versions without artwork, guidance language fallback.
+- **Auth** — validation, expiry, attempt limits, resend cooldown, logout, session restore.
+- **State** — selection reset rules, preference retention, persisted-state parsing.
+- **Screens** — protected routes, registration → OTP → language, home (saved forms,
+  continue, empty state), settings (language, guidance, logout), the viewer
+  (highlight count per purpose, field guidance, progress persistence, zoom/Fit,
+  page tracking, guidance-off) and i18n key parity.
+- **`smoke.test.tsx`** — the whole journey (register → … → complete → home) against the
+  shipped service registry and persisted state, including a reload.
 
 ## Assets you must copy from Figma (not included)
 
