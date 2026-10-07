@@ -7,7 +7,16 @@ interface ArtworkProps {
   fields: FormFieldRect[];
 }
 
-const on = (fields: FormFieldRect[], id: string) => fields.find((f) => f.id === id)?.applicable ?? false;
+/**
+ * Whether a field is highlighted for the active purpose. Matched on `fieldKey`
+ * (stable across form versions) because field ids are version-scoped.
+ *
+ * A highlighted field's own background must be transparent so the tint drawn by
+ * HighlightOverlay shows through — the same rule the Figma file follows for the
+ * fields that are always highlighted.
+ */
+const on = (fields: FormFieldRect[], fieldKey: string) =>
+  fields.find((f) => f.fieldKey === fieldKey)?.applicable ?? false;
 
 const NAME_CELLS = ['R', 'A', 'J', 'E', 'S', 'H', '', 'K', 'U', 'M', 'A', 'R'];
 const MOBILE_DIGITS = ['9', '8', '4', '0', '1', '2', '3', '4', '5', '6'];
@@ -77,8 +86,12 @@ function SbiPage1({ fields }: ArtworkProps) {
         </div>
       </div>
 
-      {/* Staff / senior citizen (not applicable) */}
-      <div className="absolute left-[16px] top-[153.86px] flex h-[43.375px] w-[221.333px] items-end gap-[4px] bg-[#fbfcfd] px-[4px] pb-[4px] pt-[3.375px]">
+      {/* Staff / senior citizen (only highlighted for some purposes) */}
+      <div
+        className={`absolute left-[16px] top-[153.86px] flex h-[43.375px] w-[221.333px] items-end gap-[4px] px-[4px] pb-[4px] pt-[3.375px] ${
+          on(fields, 'staff-senior') ? 'bg-transparent' : 'bg-[#fbfcfd]'
+        }`}
+      >
         <div className="flex flex-1 flex-col gap-[2px]">
           <span className="font-mono text-[7px] leading-[8.75px] text-[#64748b]">STAFF ACCOUNT ID (IF APPLICABLE)</span>
           <div className="h-[16px] bg-[rgba(217,227,241,0.4)]" />
@@ -158,8 +171,12 @@ function SbiPage1({ fields }: ArtworkProps) {
         <span className="text-[6.5px] leading-[8.13px] text-[#64748b]">Primary number registered with UIDAI</span>
       </div>
 
-      {/* Minor / guardian (not applicable) */}
-      <div className="absolute left-[16px] top-[339.63px] flex h-[48.74px] w-[334px] flex-col gap-[1.99px] bg-[#f8fafc] p-[6px] opacity-70">
+      {/* Minor / guardian (highlighted only for minor-account purposes) */}
+      <div
+        className={`absolute left-[16px] top-[339.63px] flex h-[48.74px] w-[334px] flex-col gap-[1.99px] p-[6px] ${
+          on(fields, 'minor-guardian') ? 'bg-transparent' : 'bg-[#f8fafc] opacity-70'
+        }`}
+      >
         <span className="text-[7.5px] font-bold uppercase leading-[9.38px] text-[#64748b]">For minor account only (leave blank if adult)</span>
         <div className="grid grid-cols-2 gap-[8px]">
           {['Guardian CIF Number', 'Relationship with Minor'].map((label) => (
@@ -185,8 +202,12 @@ function SbiPage1({ fields }: ArtworkProps) {
         </div>
       </div>
 
-      {/* Branch office use (not applicable) */}
-      <div className="absolute bottom-[33.37px] left-[16px] right-[16px] flex flex-col gap-[4px] rounded-[2px] bg-[#f1f5f9] p-[6px]">
+      {/* Branch office use (never filled by the applicant) */}
+      <div
+        className={`absolute bottom-[33.37px] left-[16px] right-[16px] flex flex-col gap-[4px] rounded-[2px] p-[6px] ${
+          on(fields, 'branch-use') ? 'bg-transparent' : 'bg-[#f1f5f9]'
+        }`}
+      >
         <div className="flex items-center justify-between">
           <span className="whitespace-nowrap text-[7.5px] font-bold uppercase leading-[9.38px] tracking-[0.188px] text-[#475569]">For branch office use only (do not fill)</span>
           <span className="whitespace-nowrap font-mono text-[7.5px] font-bold uppercase leading-[9.38px] tracking-[0.188px] text-[#475569]">Branch Code: 04221</span>
