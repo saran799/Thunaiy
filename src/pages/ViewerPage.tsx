@@ -27,9 +27,15 @@ export default function ViewerPage() {
 
   const { bankId, bankFormId, purposeId, formVersionId, savedFormId } = state.selections;
   const session = state.session;
-  /** Non-null selection bundle; the flow screens guarantee all four ids. */
-  const selectionIds =
-    bankId && bankFormId && purposeId && formVersionId ? { bankId, bankFormId, purposeId, formVersionId } : null;
+  /**
+   * Non-null selection bundle; the flow screens guarantee all four ids.
+   * Memoised so `useAsync` sees stable dependencies (a fresh object each render
+   * would re-run the loader forever).
+   */
+  const selectionIds = useMemo(
+    () => (bankId && bankFormId && purposeId && formVersionId ? { bankId, bankFormId, purposeId, formVersionId } : null),
+    [bankId, bankFormId, purposeId, formVersionId],
+  );
   const guidanceEnabled = state.preferences.showFieldGuidance;
 
   const [progressByFieldId, setProgressByFieldId] = useState<Record<string, 'pending' | 'done'>>({});
