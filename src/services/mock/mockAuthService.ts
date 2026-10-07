@@ -4,10 +4,7 @@ import { ApiError } from '../errors';
 import type { AuthService, OtpChallenge } from '../types';
 import { MockDb, hashForDevBackend, randomOtpCode } from './mockDb';
 
-/** Indian mobile numbers in E.164, starting 6-9 as issued in India. */
-export const E164_INDIA_PATTERN = /^\+91[6-9]\d{9}$/;
-
-export const NAME_PATTERN = /^[\p{L}\p{M}][\p{L}\p{M}\s.'-]{1,79}$/u;
+import { E164_INDIA_PATTERN, NAME_PATTERN } from '../../domain/validation';
 
 export interface DevAuthOptions {
   otpTtlSeconds?: number;

@@ -7,7 +7,7 @@ import { useTranslation } from '../i18n/I18nProvider';
 import { useAppState } from '../state/AppStateContext';
 import { useServices } from '../services/ServicesProvider';
 import { isApiError } from '../services/errors';
-import { E164_INDIA_PATTERN, NAME_PATTERN } from '../services/mock/mockAuthService';
+import { E164_INDIA_PATTERN, NAME_PATTERN } from '../domain/validation';
 import { savePendingChallenge } from '../state/otpChallenge';
 
 export default function RegisterPage() {
