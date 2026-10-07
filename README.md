@@ -56,6 +56,11 @@ product can be built and demonstrated. Point `VITE_AUTH_MODE=api` at a real back
 `db/schema.sql` for the tables such a backend needs, including `otp_challenges`
 (one-time, attempt-limited, hashed) and `sessions` (revocable).
 
+The session token is currently persisted in `localStorage` so the user stays
+signed in across reloads. With the HTTP backend, prefer an httpOnly, `Secure`,
+`SameSite` session cookie issued by the API and drop the token from client state
+(the state shape carries the token only because the development backend needs it).
+
 ## Database
 
 `db/schema.sql` (PostgreSQL) is the schema of record: banks, form types, bank
