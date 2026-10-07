@@ -13,11 +13,14 @@ import '@fontsource/noto-sans-telugu/400.css';
 import '@fontsource/noto-sans-kannada/400.css';
 import './styles/index.css';
 import App from './App';
+import AppProviders from './app/AppProviders';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <AppProviders>
+        <App />
+      </AppProviders>
     </BrowserRouter>
   </React.StrictMode>,
 );

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import FigmaImg from './FigmaImg';
 import ProfileButton from './ProfileButton';
+import { useTranslation } from '../i18n/I18nProvider';
 
 /** Logo slot: 'THUNAI APP LOGO.jpeg' (199.72 x 32). Drop the file in public/assets/figma/thunai-app-logo.jpeg. */
 function LogoSlot() {
@@ -16,6 +17,7 @@ function LogoSlot() {
 /** Top bar for Home, Forms (variant "home") and Settings (variant "settings"). */
 export default function AppHeader({ variant }: { variant: 'home' | 'settings' }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const bg = variant === 'home' ? 'bg-[rgba(247,249,255,0.8)]' : 'bg-[rgba(255,255,255,0.8)]';
   return (
     <header className={`fixed inset-x-0 top-0 z-20 mx-auto w-full max-w-[430px] shadow-header backdrop-blur-[12px] ${bg}`}>
@@ -30,7 +32,7 @@ export default function AppHeader({ variant }: { variant: 'home' | 'settings' })
             <div className="relative h-[44px] w-[36.89px] shrink-0">
               <button
                 type="button"
-                aria-label="Go back"
+                aria-label={t('common.back')}
                 onClick={() => navigate('/home')}
                 className="absolute left-[-4px] top-0 flex h-[44px] w-[40.89px] items-center justify-center rounded-[8px]"
               >
@@ -39,7 +41,7 @@ export default function AppHeader({ variant }: { variant: 'home' | 'settings' })
             </div>
             <LogoSlot />
             <h1 className="overflow-hidden text-ellipsis whitespace-nowrap pr-[9.42px] text-[18px] font-semibold leading-[26px] tracking-[-0.18px] text-ink">
-              Settings
+              {t('settings.title')}
             </h1>
           </div>
         )}
