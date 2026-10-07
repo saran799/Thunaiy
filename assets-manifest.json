@@ -1,0 +1,684 @@
+{
+  "figmaFile": "xTZpYYx2MvpQCgmejKPUGE",
+  "count": 73,
+  "assets": [
+    {
+      "file": "public/assets/figma/50a7e.png",
+      "id": "50a7e",
+      "figmaFrames": [
+        "5:2"
+      ],
+      "slot": "59.72x48",
+      "usage": "Thunaiy logo (Registration, node 5:7)"
+    },
+    {
+      "file": "public/assets/figma/ee07b.svg",
+      "id": "ee07b",
+      "figmaFrames": [
+        "5:2"
+      ],
+      "slot": "9x5.55",
+      "usage": "Chevron-down, country code"
+    },
+    {
+      "file": "public/assets/figma/77060.svg",
+      "id": "77060",
+      "figmaFrames": [
+        "5:2",
+        "5:55",
+        "5:188",
+        "5:419",
+        "5:804",
+        "5:865"
+      ],
+      "slot": "13.333x13.333",
+      "usage": "Arrow-right (primary CTAs, 13.333px)"
+    },
+    {
+      "file": "public/assets/figma/96933.svg",
+      "id": "96933",
+      "figmaFrames": [
+        "5:2"
+      ],
+      "slot": "10.667x13.333",
+      "usage": "Shield-check, trust statement"
+    },
+    {
+      "file": "public/assets/figma/91d21.svg",
+      "id": "91d21",
+      "figmaFrames": [
+        "5:55"
+      ],
+      "slot": "14.667x14.667",
+      "usage": "Back arrow (OTP)"
+    },
+    {
+      "file": "public/assets/figma/2bb9c.svg",
+      "id": "2bb9c",
+      "figmaFrames": [
+        "5:55"
+      ],
+      "slot": "13.333x13.333",
+      "usage": "SMS icon, guidance callout"
+    },
+    {
+      "file": "public/assets/figma/94568.svg",
+      "id": "94568",
+      "figmaFrames": [
+        "5:55"
+      ],
+      "slot": "12.5x12.5",
+      "usage": "Validation pill icon (hidden state)"
+    },
+    {
+      "file": "public/assets/figma/fc917.svg",
+      "id": "fc917",
+      "figmaFrames": [
+        "5:55"
+      ],
+      "slot": "12x15",
+      "usage": "Shield, security footer"
+    },
+    {
+      "file": "public/assets/figma/8b04a.svg",
+      "id": "8b04a",
+      "figmaFrames": [
+        "5:133"
+      ],
+      "slot": "16x16",
+      "usage": "Back arrow (Language)"
+    },
+    {
+      "file": "public/assets/figma/03d99.svg",
+      "id": "03d99",
+      "figmaFrames": [
+        "5:133",
+        "5:285"
+      ],
+      "slot": "12x12",
+      "usage": "Arrow-right 12px (Continue)"
+    },
+    {
+      "file": "public/assets/figma/fe25d.svg",
+      "id": "fe25d",
+      "figmaFrames": [
+        "5:188",
+        "5:285",
+        "5:419",
+        "5:804"
+      ],
+      "slot": "16x16",
+      "usage": "Back arrow 16px (Bank, Form, Purpose, Complete)"
+    },
+    {
+      "file": "public/assets/figma/988f1.svg",
+      "id": "988f1",
+      "figmaFrames": [
+        "5:188"
+      ],
+      "slot": "16.5x16.5",
+      "usage": "Search icon (Bank)"
+    },
+    {
+      "file": "public/assets/figma/8fbcd.svg",
+      "id": "8fbcd",
+      "figmaFrames": [
+        "5:188"
+      ],
+      "slot": "32x32",
+      "usage": "SBI emblem"
+    },
+    {
+      "file": "public/assets/figma/1c19e.svg",
+      "id": "1c19e",
+      "figmaFrames": [
+        "5:188"
+      ],
+      "slot": "32x32",
+      "usage": "HDFC emblem"
+    },
+    {
+      "file": "public/assets/figma/6f05a.svg",
+      "id": "6f05a",
+      "figmaFrames": [
+        "5:188"
+      ],
+      "slot": "32x32",
+      "usage": "ICICI emblem"
+    },
+    {
+      "file": "public/assets/figma/17fbf.svg",
+      "id": "17fbf",
+      "figmaFrames": [
+        "5:188"
+      ],
+      "slot": "32x32",
+      "usage": "Bank of Baroda emblem"
+    },
+    {
+      "file": "public/assets/figma/44085.svg",
+      "id": "44085",
+      "figmaFrames": [
+        "5:188"
+      ],
+      "slot": "32x32",
+      "usage": "Canara Bank emblem"
+    },
+    {
+      "file": "public/assets/figma/7166a.svg",
+      "id": "7166a",
+      "figmaFrames": [
+        "5:188"
+      ],
+      "slot": "9.696x7.394",
+      "usage": "Check in selection badge"
+    },
+    {
+      "file": "public/assets/figma/669d2.svg",
+      "id": "669d2",
+      "figmaFrames": [
+        "5:188"
+      ],
+      "slot": "12x12",
+      "usage": "Arrow-right, View all banks"
+    },
+    {
+      "file": "public/assets/figma/d9eec.svg",
+      "id": "d9eec",
+      "figmaFrames": [
+        "5:285"
+      ],
+      "slot": "15x15",
+      "usage": "SBI mini emblem inside #005b9f circle"
+    },
+    {
+      "file": "public/assets/figma/09ce4.svg",
+      "id": "09ce4",
+      "figmaFrames": [
+        "5:285"
+      ],
+      "slot": "32.5x16.5",
+      "usage": "Search icon incl. 16px left padding (Form select)"
+    },
+    {
+      "file": "public/assets/figma/3b03e.svg",
+      "id": "3b03e",
+      "figmaFrames": [
+        "5:285"
+      ],
+      "slot": "15x16.667",
+      "usage": "Form icon: Account Opening (select)"
+    },
+    {
+      "file": "public/assets/figma/09465.svg",
+      "id": "09465",
+      "figmaFrames": [
+        "5:285"
+      ],
+      "slot": "10.867x8.017",
+      "usage": "Check in selected form circle"
+    },
+    {
+      "file": "public/assets/figma/66683.svg",
+      "id": "66683",
+      "figmaFrames": [
+        "5:285"
+      ],
+      "slot": "16.667x13.333",
+      "usage": "Form icon: Account Closure (select)"
+    },
+    {
+      "file": "public/assets/figma/9d29a.svg",
+      "id": "9d29a",
+      "figmaFrames": [
+        "5:285",
+        "5:960",
+        "5:1117"
+      ],
+      "slot": "6.167x10",
+      "usage": "Chevron-right"
+    },
+    {
+      "file": "public/assets/figma/9fe10.svg",
+      "id": "9fe10",
+      "figmaFrames": [
+        "5:285"
+      ],
+      "slot": "16.667x16.667",
+      "usage": "Form icon: KYC Update (select)"
+    },
+    {
+      "file": "public/assets/figma/3d89d.svg",
+      "id": "3d89d",
+      "figmaFrames": [
+        "5:285"
+      ],
+      "slot": "13.333x16.667",
+      "usage": "Form icon: Address Change (select)"
+    },
+    {
+      "file": "public/assets/figma/e300b.svg",
+      "id": "e300b",
+      "figmaFrames": [
+        "5:285"
+      ],
+      "slot": "14.167x16.667",
+      "usage": "Form icon: Minor to Major (select)"
+    },
+    {
+      "file": "public/assets/figma/83a20.svg",
+      "id": "83a20",
+      "figmaFrames": [
+        "5:285"
+      ],
+      "slot": "20x13.333",
+      "usage": "Form icon: Nomination (select)"
+    },
+    {
+      "file": "public/assets/figma/67a89.svg",
+      "id": "67a89",
+      "figmaFrames": [
+        "5:419"
+      ],
+      "slot": "13.333x16.667",
+      "usage": "Document icon, selected-form capsule"
+    },
+    {
+      "file": "public/assets/figma/99eac.svg",
+      "id": "99eac",
+      "figmaFrames": [
+        "5:419"
+      ],
+      "slot": "18.333x13.333",
+      "usage": "Purpose icon: Open a new account"
+    },
+    {
+      "file": "public/assets/figma/6c1c7.svg",
+      "id": "6c1c7",
+      "figmaFrames": [
+        "5:419"
+      ],
+      "slot": "18.333x15",
+      "usage": "Purpose icon: Convert Minor to Major"
+    },
+    {
+      "file": "public/assets/figma/9a0af.svg",
+      "id": "9a0af",
+      "figmaFrames": [
+        "5:419"
+      ],
+      "slot": "15x15",
+      "usage": "Purpose icon: Update account details"
+    },
+    {
+      "file": "public/assets/figma/1d6c8.svg",
+      "id": "1d6c8",
+      "figmaFrames": [
+        "5:419"
+      ],
+      "slot": "16.667x13.333",
+      "usage": "Purpose icon: Change account type"
+    },
+    {
+      "file": "public/assets/figma/0e2c4.svg",
+      "id": "0e2c4",
+      "figmaFrames": [
+        "5:419"
+      ],
+      "slot": "13.333x3.333",
+      "usage": "Purpose icon: Other"
+    },
+    {
+      "file": "public/assets/figma/877f6.svg",
+      "id": "877f6",
+      "figmaFrames": [
+        "5:508"
+      ],
+      "slot": "18x18",
+      "usage": "Affix-photo icon (form mock)"
+    },
+    {
+      "file": "public/assets/figma/77258.svg",
+      "id": "77258",
+      "figmaFrames": [
+        "5:508"
+      ],
+      "slot": "10.5x1.5",
+      "usage": "Zoom-out icon"
+    },
+    {
+      "file": "public/assets/figma/b8dbe.svg",
+      "id": "b8dbe",
+      "figmaFrames": [
+        "5:508"
+      ],
+      "slot": "10.5x10.5",
+      "usage": "Zoom-in icon"
+    },
+    {
+      "file": "public/assets/figma/64a22.svg",
+      "id": "64a22",
+      "figmaFrames": [
+        "5:508"
+      ],
+      "slot": "13.333x10.667",
+      "usage": "Fit icon"
+    },
+    {
+      "file": "public/assets/figma/ff924.svg",
+      "id": "ff924",
+      "figmaFrames": [
+        "5:508"
+      ],
+      "slot": "13.333x13.333",
+      "usage": "Back arrow 13.333px (Viewer)"
+    },
+    {
+      "file": "public/assets/figma/59e02.svg",
+      "id": "59e02",
+      "figmaFrames": [
+        "5:508",
+        "5:804",
+        "5:865",
+        "5:960",
+        "5:1117"
+      ],
+      "slot": "12x12",
+      "usage": "Profile icon in #002541 button"
+    },
+    {
+      "file": "public/assets/figma/ca5bd.svg",
+      "id": "ca5bd",
+      "figmaFrames": [
+        "5:804"
+      ],
+      "slot": "22.939x17.258",
+      "usage": "Success check"
+    },
+    {
+      "file": "public/assets/figma/b847b.svg",
+      "id": "b847b",
+      "figmaFrames": [
+        "5:804"
+      ],
+      "slot": "14.667x18.333",
+      "usage": "Document icon, summary card"
+    },
+    {
+      "file": "public/assets/figma/ee6a6.svg",
+      "id": "ee6a6",
+      "figmaFrames": [
+        "5:804"
+      ],
+      "slot": "10.753x8.09",
+      "usage": "Check in status badge"
+    },
+    {
+      "file": "public/assets/figma/2be67.svg",
+      "id": "2be67",
+      "figmaFrames": [
+        "5:804"
+      ],
+      "slot": "15x17",
+      "usage": "Info icon, guidance note"
+    },
+    {
+      "file": "public/assets/figma/470de.svg",
+      "id": "470de",
+      "figmaFrames": [
+        "5:865"
+      ],
+      "slot": "16x20",
+      "usage": "Recent form icon 1 (Account Opening)"
+    },
+    {
+      "file": "public/assets/figma/a9ff4.svg",
+      "id": "a9ff4",
+      "figmaFrames": [
+        "5:865"
+      ],
+      "slot": "6.167x10",
+      "usage": "Chevron-right (Home recent forms)"
+    },
+    {
+      "file": "public/assets/figma/48394.svg",
+      "id": "48394",
+      "figmaFrames": [
+        "5:865"
+      ],
+      "slot": "18x20",
+      "usage": "Recent form icon 2 (KYC)"
+    },
+    {
+      "file": "public/assets/figma/9e00f.svg",
+      "id": "9e00f",
+      "figmaFrames": [
+        "5:865"
+      ],
+      "slot": "16.125x12",
+      "usage": "Folder icon, recent-forms hint"
+    },
+    {
+      "file": "public/assets/figma/14a3f.svg",
+      "id": "14a3f",
+      "figmaFrames": [
+        "5:865"
+      ],
+      "slot": "16x18",
+      "usage": "Nav: Home (active)"
+    },
+    {
+      "file": "public/assets/figma/141f1.svg",
+      "id": "141f1",
+      "figmaFrames": [
+        "5:960",
+        "5:1117"
+      ],
+      "slot": "16x18",
+      "usage": "Nav: Home (inactive)"
+    },
+    {
+      "file": "public/assets/figma/c3545.svg",
+      "id": "c3545",
+      "figmaFrames": [
+        "5:865",
+        "5:960",
+        "5:1117"
+      ],
+      "slot": "16x20",
+      "usage": "Nav: Forms"
+    },
+    {
+      "file": "public/assets/figma/17005.svg",
+      "id": "17005",
+      "figmaFrames": [
+        "5:865",
+        "5:960"
+      ],
+      "slot": "20.1x20",
+      "usage": "Nav: Settings (inactive)"
+    },
+    {
+      "file": "public/assets/figma/c50fe.svg",
+      "id": "c50fe",
+      "figmaFrames": [
+        "5:1117"
+      ],
+      "slot": "20.1x20",
+      "usage": "Nav: Settings (active)"
+    },
+    {
+      "file": "public/assets/figma/72470.svg",
+      "id": "72470",
+      "figmaFrames": [
+        "5:960"
+      ],
+      "slot": "15x10",
+      "usage": "Filter icon"
+    },
+    {
+      "file": "public/assets/figma/0661e.svg",
+      "id": "0661e",
+      "figmaFrames": [
+        "5:960"
+      ],
+      "slot": "15x15",
+      "usage": "Search icon (Forms directory)"
+    },
+    {
+      "file": "public/assets/figma/fe9da.svg",
+      "id": "fe9da",
+      "figmaFrames": [
+        "5:960"
+      ],
+      "slot": "14.667x18.333",
+      "usage": "Directory form icon: Account Opening"
+    },
+    {
+      "file": "public/assets/figma/29aee.svg",
+      "id": "29aee",
+      "figmaFrames": [
+        "5:960"
+      ],
+      "slot": "18.333x18.333",
+      "usage": "Directory form icon: KYC Update"
+    },
+    {
+      "file": "public/assets/figma/b7ee3.svg",
+      "id": "b7ee3",
+      "figmaFrames": [
+        "5:960"
+      ],
+      "slot": "14.667x18.333",
+      "usage": "Directory form icon: Address Change"
+    },
+    {
+      "file": "public/assets/figma/7b1b0.svg",
+      "id": "7b1b0",
+      "figmaFrames": [
+        "5:960"
+      ],
+      "slot": "18.333x15.033",
+      "usage": "Directory form icon: Nomination"
+    },
+    {
+      "file": "public/assets/figma/543f1.svg",
+      "id": "543f1",
+      "figmaFrames": [
+        "5:960"
+      ],
+      "slot": "18.333x14.667",
+      "usage": "Directory form icon: Account Closure"
+    },
+    {
+      "file": "public/assets/figma/f39b5.svg",
+      "id": "f39b5",
+      "figmaFrames": [
+        "5:960"
+      ],
+      "slot": "13.333x18.667",
+      "usage": "Shield icon, Standardized Official Layouts"
+    },
+    {
+      "file": "public/assets/figma/dec7f.svg",
+      "id": "dec7f",
+      "figmaFrames": [
+        "5:1117"
+      ],
+      "slot": "16x16",
+      "usage": "Profile icon, settings card"
+    },
+    {
+      "file": "public/assets/figma/e4403.svg",
+      "id": "e4403",
+      "figmaFrames": [
+        "5:1117"
+      ],
+      "slot": "10.667x10.667",
+      "usage": "Arrow, Edit profile"
+    },
+    {
+      "file": "public/assets/figma/15326.svg",
+      "id": "15326",
+      "figmaFrames": [
+        "5:1117"
+      ],
+      "slot": "16.667x16.667",
+      "usage": "Globe, Language row"
+    },
+    {
+      "file": "public/assets/figma/c5ade.svg",
+      "id": "c5ade",
+      "figmaFrames": [
+        "5:1117"
+      ],
+      "slot": "18.333x18.333",
+      "usage": "Sparkle, Show field guidance"
+    },
+    {
+      "file": "public/assets/figma/cf99d.svg",
+      "id": "cf99d",
+      "figmaFrames": [
+        "5:1117"
+      ],
+      "slot": "16.667x16.667",
+      "usage": "Help & Support icon"
+    },
+    {
+      "file": "public/assets/figma/e9313.svg",
+      "id": "e9313",
+      "figmaFrames": [
+        "5:1117"
+      ],
+      "slot": "13.333x16.667",
+      "usage": "Privacy Policy icon"
+    },
+    {
+      "file": "public/assets/figma/0c5af.svg",
+      "id": "0c5af",
+      "figmaFrames": [
+        "5:1117"
+      ],
+      "slot": "13.333x16.667",
+      "usage": "Terms of Use icon"
+    },
+    {
+      "file": "public/assets/figma/52f7b.svg",
+      "id": "52f7b",
+      "figmaFrames": [
+        "5:1117"
+      ],
+      "slot": "16.667x16.667",
+      "usage": "About icon"
+    },
+    {
+      "file": "public/assets/figma/108d9.svg",
+      "id": "108d9",
+      "figmaFrames": [
+        "5:1117"
+      ],
+      "slot": "15x15",
+      "usage": "Log out icon"
+    },
+    {
+      "file": "public/assets/figma/271b7.svg",
+      "id": "271b7",
+      "figmaFrames": [
+        "5:1117"
+      ],
+      "slot": "14.667x14.667",
+      "usage": "Back arrow (Settings)"
+    },
+    {
+      "file": "public/assets/figma/thunai-app-logo.jpeg",
+      "id": "thunai-app-logo",
+      "figmaFrames": [
+        "5:865",
+        "5:960",
+        "5:1117"
+      ],
+      "slot": "199.72x32",
+      "usage": "'THUNAI APP LOGO.jpeg' header slot (Home, Forms, Settings). Figma exports no image data for this node; copy it manually from the Figma layer."
+    }
+  ]
+}
