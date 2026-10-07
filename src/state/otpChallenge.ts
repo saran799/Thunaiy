@@ -51,9 +51,4 @@ export function clearPendingChallenge(): void {
   }
 }
 
-export function formatIndianPhone(phoneE164: string): string {
-  const digits = phoneE164.replace(/\D/g, '');
-  const national = digits.startsWith('91') ? digits.slice(2) : digits;
-  if (national.length !== 10) return phoneE164;
-  return `+91 ${national.slice(0, 5)} ${national.slice(5)}`;
-}
+export { formatIndianPhone } from '../domain/validation';
