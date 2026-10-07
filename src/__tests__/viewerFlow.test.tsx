@@ -114,6 +114,40 @@ describe('viewer flow', () => {
     await waitFor(() => expect(indicator()).toBe('2 / 2'));
   });
 
+  it('zooms in, zooms out and returns to fit', async () => {
+    const { services, state } = await signedInViewerState();
+    renderViewer(state, services);
+    await screen.findByText('6 required fields');
+
+    const percent = () => screen.getByLabelText('Zoom in document').parentElement?.textContent ?? '';
+    const pageFrame = () => document.querySelector('[data-page="1"]') as HTMLElement;
+
+    expect(percent()).toContain('100%');
+    const fitWidth = pageFrame().style.width;
+
+    fireEvent.click(screen.getByLabelText('Zoom in document'));
+    expect(percent()).toContain('125%');
+    // The scaled page grows, so the whole document (overlay + tap targets) scales together.
+    expect(pageFrame().style.width).not.toBe(fitWidth);
+    expect((pageFrame().firstElementChild as HTMLElement).style.transform).toBe('scale(1.25)');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Reset document scale' }));
+    expect(percent()).toContain('100%');
+    expect(pageFrame().style.width).toBe(fitWidth);
+
+    fireEvent.click(screen.getByLabelText('Zoom out document'));
+    expect(percent()).toContain('75%');
+  });
+
+  it('does not open guidance when the preference is switched off', async () => {
+    const { services, state } = await signedInViewerState();
+    renderViewer({ ...state, preferences: { ...state.preferences, showFieldGuidance: false } }, services);
+
+    await screen.findByText('6 required fields');
+    expect(document.querySelectorAll('button[data-field-id]')).toHaveLength(0);
+    expect(screen.queryByRole('dialog')).toBeNull();
+  });
+
   it('marks the selected field while its guidance is open', async () => {
     const { services, state } = await signedInViewerState();
     renderViewer(state, services);
