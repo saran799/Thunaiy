@@ -56,9 +56,11 @@ export function versionById(catalog: MockCatalog, versionId: string): FormVersio
   return catalog.formVersions.find((version) => version.id === versionId) ?? null;
 }
 
-/** A version is usable in the viewer once artwork and geometry exist. */
+/** A version is usable in the viewer once artwork/geometry or an actual PDF exists. */
 export function versionHasArtwork(catalog: MockCatalog, versionId: string): boolean {
-  return catalog.formPages.some((page) => page.formVersionId === versionId);
+  const hasPages = catalog.formPages.some((page) => page.formVersionId === versionId);
+  const hasPdf = catalog.formVersions.some((version) => version.id === versionId && Boolean(version.pdfUrl));
+  return hasPages || hasPdf;
 }
 
 /** purposeId -> applicable field ids, for one form version. */
@@ -86,7 +88,7 @@ export function requiredFieldIds(catalog: MockCatalog, versionId: string, purpos
 /**
  * Version that should be used for a bank form + purpose:
  * the newest published version that declares applicability for the purpose and
- * has artwork. Feeds the "form not available yet" path when nothing matches.
+ * has artwork or PDF. Feeds the "form not available yet" path when nothing matches.
  */
 export function resolveVersionForPurpose(
   catalog: MockCatalog,
@@ -99,14 +101,18 @@ export function resolveVersionForPurpose(
       versionHasArtwork(catalog, version.id) &&
       catalog.applicability.some((row) => row.formVersionId === version.id && row.purposeId === purposeId),
   );
-  return withPurpose ?? versions[0] ?? null;
+  return withPurpose ?? versions.find((v) => versionHasArtwork(catalog, v.id)) ?? versions[0] ?? null;
 }
 
 export function bankFormListItems(catalog: MockCatalog, bankId: string): BankFormListItem[] {
   return bankFormsForBank(catalog, bankId).flatMap((bankForm) => {
     const formType = formTypeById(catalog, bankForm.formTypeId);
     if (!formType) return [];
-    const available = publishedVersions(catalog, bankForm.id).some((version) => versionHasArtwork(catalog, version.id));
+    const versions = publishedVersions(catalog, bankForm.id);
+    const versionWithArtwork = versions.find((version) => versionHasArtwork(catalog, version.id));
+    const available = Boolean(versionWithArtwork);
+    const pdfUrl = bankForm.pdfUrl ?? versionWithArtwork?.pdfUrl;
+    const filename = bankForm.filename ?? versionWithArtwork?.filename;
     return [
       {
         bankFormId: bankForm.id,
@@ -115,6 +121,8 @@ export function bankFormListItems(catalog: MockCatalog, bankId: string): BankFor
         descriptionKey: formType.descriptionKey,
         icon: formType.icon,
         available,
+        pdfUrl,
+        filename,
       },
     ];
   });
@@ -125,7 +133,11 @@ export function directoryItems(catalog: MockCatalog): DirectoryFormItem[] {
     const bank = bankById(catalog, bankForm.bankId);
     const formType = formTypeById(catalog, bankForm.formTypeId);
     if (!bank || !formType) return [];
-    const available = publishedVersions(catalog, bankForm.id).some((version) => versionHasArtwork(catalog, version.id));
+    const versions = publishedVersions(catalog, bankForm.id);
+    const versionWithArtwork = versions.find((version) => versionHasArtwork(catalog, version.id));
+    const available = Boolean(versionWithArtwork);
+    const pdfUrl = bankForm.pdfUrl ?? versionWithArtwork?.pdfUrl;
+    const filename = bankForm.filename ?? versionWithArtwork?.filename;
     return [
       {
         bankFormId: bankForm.id,
@@ -137,6 +149,8 @@ export function directoryItems(catalog: MockCatalog): DirectoryFormItem[] {
         icon: formType.icon,
         purposeLabelKeys: purposesForBankForm(catalog, bankForm.id).map((purpose) => purpose.labelKey),
         available,
+        pdfUrl,
+        filename,
       },
     ];
   });

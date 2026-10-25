@@ -49,11 +49,16 @@ export default function FormsPage() {
     });
   }, [forms, activeFilter, query, t]);
 
-  const openForm = (bankId: string, bankFormId: string) => {
+  const openForm = async (bankId: string, bankFormId: string) => {
     resetSelection();
     selectBank(bankId);
     selectBankForm(bankFormId);
-    navigate('/purpose');
+    const purposes = await services.catalog.listPurposes(bankFormId);
+    if (purposes.length > 0) {
+      navigate('/purpose');
+    } else {
+      navigate('/viewer?mode=pdf');
+    }
   };
 
   return (

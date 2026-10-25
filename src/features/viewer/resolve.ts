@@ -26,6 +26,8 @@ export interface ResolveFormDocumentInput {
   /** fieldId -> "done" | "pending" for the active saved form. */
   progressByFieldId?: Record<string, FieldProgressState>;
   translate: LabelResolver;
+  pdfUrl?: string;
+  filename?: string;
 }
 
 /** Field ids this purpose highlights on the form. */
@@ -89,5 +91,7 @@ export function resolveFormDocument(input: ResolveFormDocumentInput): FormDocume
     fields,
     requiredCount: requiredFields.length,
     doneCount: doneFields.length,
+    pdfUrl: input.pdfUrl,
+    filename: input.filename,
   };
 }

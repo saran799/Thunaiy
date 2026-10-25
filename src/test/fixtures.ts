@@ -5,6 +5,7 @@ import { MockDb } from '../services/mock/mockDb';
 import { MockFormService } from '../services/mock/mockFormService';
 import { MockPreferenceService } from '../services/mock/mockPreferenceService';
 import { MockSavedFormService } from '../services/mock/mockSavedFormService';
+import { MockBranchService } from '../services/mock/mockBranchService';
 import { buildMockCatalog } from '../services/mock/seed';
 
 /**
@@ -24,6 +25,7 @@ export function createTestServices(options: {
     forms: new MockFormService(catalog),
     savedForms: new MockSavedFormService(db, catalog),
     preferences: new MockPreferenceService(db),
+    branch: new MockBranchService(),
   };
   return { services, db, auth: services.auth };
 }

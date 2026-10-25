@@ -45,6 +45,13 @@ export interface Bank {
   isActive: boolean;
 }
 
+export interface Branch {
+  id: string;
+  name: string;
+  bankId: string;
+  isActive: boolean;
+}
+
 /** Global form catalogue entry, e.g. "Account Opening Form". */
 export interface FormType {
   id: string;
@@ -59,6 +66,8 @@ export interface BankForm {
   bankId: string;
   formTypeId: string;
   isActive: boolean;
+  pdfUrl?: string;
+  filename?: string;
 }
 
 export type FormVersionStatus = 'published' | 'draft';
@@ -72,6 +81,8 @@ export interface FormVersion {
   artworkHash: string;
   status: FormVersionStatus;
   publishedAt: string;
+  pdfUrl?: string;
+  filename?: string;
 }
 
 export interface Purpose {
@@ -160,6 +171,8 @@ export interface DirectoryFormItem {
   purposeLabelKeys: string[];
   /** False when no published version of this form carries artwork/geometry yet. */
   available: boolean;
+  pdfUrl?: string;
+  filename?: string;
 }
 
 /** A row of the "Select your form" screen. */
@@ -170,6 +183,8 @@ export interface BankFormListItem {
   descriptionKey: string;
   icon: FigmaAssetId;
   available: boolean;
+  pdfUrl?: string;
+  filename?: string;
 }
 
 export interface Session {

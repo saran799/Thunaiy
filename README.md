@@ -21,6 +21,7 @@ Individual scripts: `npm run typecheck`, `npm run test`, `npm run build`.
 Full path: **register → OTP → language → bank → form → purpose → viewer → complete**,
 plus **home**, **forms** and **settings**.
 
+- **Public Assistance** — `/assist/:branchId` provides an unauthenticated, un-persisted, offline-capable flow (language → form → purpose → viewer) triggered via QR codes, preserving full UI feature parity without leaking session data.
 - **State** (`src/state/`) — session, bank/form/purpose selections, language and
   guidance preference persist to `localStorage`, so selections survive navigation
   and reloads. A stored session token is revalidated on start-up.

@@ -11,6 +11,7 @@ import CompletePage from './pages/CompletePage';
 import HomePage from './pages/HomePage';
 import FormsPage from './pages/FormsPage';
 import SettingsPage from './pages/SettingsPage';
+import AssistFlow from './pages/assist/AssistFlow';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       <Route path="/" element={<Navigate to="/register" replace />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/otp" element={<OtpPage />} />
+      <Route path="/assist/:branchId/*" element={<AssistFlow />} />
 
       {/* Everything past registration requires a session. */}
       <Route element={<RequireAuth />}>

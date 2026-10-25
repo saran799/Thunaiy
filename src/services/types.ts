@@ -117,6 +117,10 @@ export interface PreferenceService {
   ensureForUser(token: string, defaults: Partial<UserPreferences>): Promise<UserPreferences>;
 }
 
+export interface BranchService {
+  getBranch(branchId: string): Promise<import('../domain/types').Branch | null>;
+}
+
 export interface Services {
   backend: 'dev' | 'http';
   auth: AuthService;
@@ -124,6 +128,7 @@ export interface Services {
   forms: FormService;
   savedForms: SavedFormService;
   preferences: PreferenceService;
+  branch: BranchService;
 }
 
 export type { User };

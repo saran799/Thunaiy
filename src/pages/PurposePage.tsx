@@ -14,7 +14,15 @@ import { useAsync } from '../hooks/useAsync';
 import { isApiError } from '../services/errors';
 import { errorMessageKey } from '../services/errorMessages';
 
-export default function PurposePage() {
+export default function PurposePage({
+  nextRoute = '/viewer',
+  backRoute = '/form',
+  errorRoute = '/form',
+}: {
+  nextRoute?: string;
+  backRoute?: string;
+  errorRoute?: string;
+}) {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { state, selectPurpose } = useAppState();
@@ -39,19 +47,19 @@ export default function PurposePage() {
     selectPurpose(purposes[0].id, null);
   }, [purposeId, purposes, selectPurpose]);
 
-  if (!bankFormId) return <Navigate to="/form" replace />;
+  if (!bankFormId) return <Navigate to={errorRoute} replace />;
 
   const handleViewForm = async () => {
     if (!bankFormId || !purposeId) return;
     const version = await services.catalog.resolveVersion(bankFormId, purposeId);
     selectPurpose(purposeId, version?.id ?? null);
-    navigate('/viewer');
+    navigate(nextRoute);
   };
 
   return (
     <Screen className="pb-[24px]">
       <header className="flex items-center justify-between px-[24px] pb-[8px] pt-[16px]">
-        <BackButton to="/form" icon="fe25d" />
+        <BackButton to={backRoute} icon="fe25d" />
         <div className="flex items-center gap-[12px]">
           <StepBars filled={4} barClass="h-[6px] w-[16px]" />
           <span className="text-[11px] font-semibold leading-[14px] tracking-[0.55px] text-muted">{t('purpose.step')}</span>
@@ -91,7 +99,7 @@ export default function PurposePage() {
             variant="empty"
             title={t('purpose.empty')}
             actionLabel={t('common.change')}
-            onAction={() => navigate('/form')}
+            onAction={() => navigate(backRoute)}
           />
         ) : null}
 

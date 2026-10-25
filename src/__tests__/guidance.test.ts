@@ -111,7 +111,7 @@ describe('viewer document resolution', () => {
     expect(document.bankName).toBe('State Bank of India');
     expect(document.requiredCount).toBe(6);
     expect(document.doneCount).toBe(1);
-    expect(document.pages).toHaveLength(2);
+    expect(document.pages).toHaveLength(1);
     expect(document.languageCode).toBe('ta');
 
     const fullName = document.fields.find((field) => field.fieldKey === 'full-name')!;

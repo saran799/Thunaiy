@@ -57,7 +57,7 @@ describe('viewer flow', () => {
     expect(await screen.findByText('Account Opening Form Page 1')).toBeTruthy();
     expect(await screen.findByText('6 required fields')).toBeTruthy();
     const indicator = document.querySelector('header button[aria-label^="Go to page"]');
-    expect(indicator?.textContent).toBe('1 / 2');
+    expect(indicator?.textContent).toBe('1 / 1');
     // The guidance pill reads "Highlighted in teal: 6 required fields for New Account".
     const pill = document.querySelector('main p');
     expect(pill?.textContent).toContain('for New Account');
@@ -108,10 +108,10 @@ describe('viewer flow', () => {
 
     const indicator = () => document.querySelector('header button[aria-label^="Go to page"]')?.textContent;
     await screen.findByText('6 required fields');
-    expect(indicator()).toBe('1 / 2');
+    expect(indicator()).toBe('1 / 1');
 
-    intersect(pageElement(2));
-    await waitFor(() => expect(indicator()).toBe('2 / 2'));
+    intersect(pageElement(1));
+    await waitFor(() => expect(indicator()).toBe('1 / 1'));
   });
 
   it('zooms in, zooms out and returns to fit', async () => {

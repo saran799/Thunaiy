@@ -127,6 +127,8 @@ export const en = {
   'viewer.markDone': 'Mark as done',
   'viewer.markedDone': 'Marked as done',
   'viewer.finish': 'Finish guidance',
+  'viewer.verificationFailedTitle': 'Verification Warning',
+  'viewer.verificationFailedBody': 'The form artwork failed technical integrity verification.',
 
   // completion
   'complete.title': 'Complete',
@@ -196,6 +198,21 @@ export const en = {
   'form.minorToMajor.description': 'Convert a minor account to a major account',
   'form.nomination.title': 'Nomination Form',
   'form.nomination.description': 'Add or update a nominee',
+  'form.depositForm.title': 'Fixed & Recurring Deposit Form',
+  'form.depositForm.description': 'Term deposit, fixed deposit and recurring deposit application form',
+  'form.fixedDeposit.title': 'Fixed Deposit Form (FDR)',
+  'form.fixedDeposit.description': 'Term and fixed deposit application form',
+  'form.sbiAof.description': 'Form 121120 — Savings Bank account opening form for resident individuals',
+  'form.hdfcAof.description': 'Regular Savings Account, BSBDA & Individual Current Account',
+  'form.hdfcDeposit.description': 'Fixed deposit and recurring deposit application form',
+  'form.bobAof.description': 'Application form for opening individual accounts',
+  'form.bobFdr.description': 'Term and fixed deposit application form (Non-callable deposit)',
+  'formSelect.openPdf': 'Open PDF',
+  'formSelect.viewPdf': 'View PDF',
+  'viewer.originalPdf': 'Original PDF',
+  'viewer.fieldGuidance': 'Field Guidance',
+  'viewer.openInNewTab': 'Open in new tab',
+  'viewer.pdfLoadError': 'Unable to load the PDF document. Please verify the file path.',
 
   // purposes
   'purpose.openNew': 'Open a new account',

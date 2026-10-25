@@ -35,6 +35,7 @@ export default function FormViewer({
             page={page}
             fields={document.fields}
             zoom={zoom}
+            pdfUrl={document.pdfUrl}
             frameRef={(element) => registerPageRef?.(page.page, element)}
             hitLayer={
               fieldsInteractive ? (

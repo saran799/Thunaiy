@@ -15,7 +15,15 @@ import { useAsync } from '../hooks/useAsync';
 import { isApiError } from '../services/errors';
 import { errorMessageKey } from '../services/errorMessages';
 
-export default function FormSelectPage() {
+export default function FormSelectPage({
+  nextRoute = '/purpose',
+  backRoute = '/bank',
+  errorRoute = '/bank',
+}: {
+  nextRoute?: string;
+  backRoute?: string;
+  errorRoute?: string;
+}) {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { state, selectBankForm } = useAppState();
@@ -51,12 +59,30 @@ export default function FormSelectPage() {
     selectBankForm(forms[0].bankFormId);
   }, [bankFormId, forms, selectBankForm]);
 
-  if (!bankId) return <Navigate to="/bank" replace />;
+  const handleContinue = async () => {
+    if (!bankFormId) return;
+    const purposes = await services.catalog.listPurposes(bankFormId);
+    if (purposes.length > 0) {
+      navigate(nextRoute);
+    } else {
+      const viewerBase = nextRoute.startsWith('/assist') ? `${nextRoute.replace(/\/purpose$/, '')}/viewer` : '/viewer';
+      navigate(`${viewerBase}?mode=pdf`);
+    }
+  };
+
+  const handleOpenPdf = (e: React.MouseEvent, formId: string) => {
+    e.stopPropagation();
+    selectBankForm(formId);
+    const viewerBase = nextRoute.startsWith('/assist') ? `${nextRoute.replace(/\/purpose$/, '')}/viewer` : '/viewer';
+    navigate(`${viewerBase}?mode=pdf`);
+  };
+
+  if (!bankId) return <Navigate to={errorRoute} replace />;
 
   return (
     <Screen className="pb-[24px]">
       <header className="flex items-center justify-between pb-[16px] pl-[24px] pr-[23.99px] pt-[8px]">
-        <BackButton to="/bank" icon="fe25d" />
+        <BackButton to={backRoute} icon="fe25d" />
         <div className="flex items-center gap-[11.99px]">
           <span className="text-[12px] font-medium leading-[16px] tracking-[0.24px] text-muted">{t('formSelect.step')}</span>
           <StepBars filled={3} barClass="h-[6px] w-[20px]" />
@@ -81,7 +107,7 @@ export default function FormSelectPage() {
             </div>
             <button
               type="button"
-              onClick={() => navigate('/bank')}
+              onClick={() => navigate(backRoute)}
               className="text-[14px] font-medium leading-[20px] tracking-[0.14px] text-teal"
             >
               {t('common.change')}
@@ -142,28 +168,54 @@ export default function FormSelectPage() {
                     role="radio"
                     aria-checked={on}
                     onClick={() => selectBankForm(form.bankFormId)}
-                    className={`flex h-[72px] w-full items-center justify-between rounded-[12px] px-[16px] text-left drop-shadow-card ${on ? 'bg-surface' : 'bg-white'}`}
+                    className={`flex min-h-[72px] w-full items-center justify-between rounded-[12px] p-[16px] text-left drop-shadow-card ${on ? 'bg-surface' : 'bg-white'}`}
                   >
                     <div className="flex min-w-0 items-center gap-[14px] pr-[8px]">
                       <div className={`flex size-[36px] shrink-0 items-center justify-center rounded-[8px] ${on ? 'bg-cyan' : 'bg-surface-2'}`}>
                         <FigmaImg id={form.icon} />
                       </div>
                       <div className="min-w-0">
-                        <p className="overflow-clip whitespace-nowrap text-[14px] font-semibold leading-[20px] tracking-[0.14px] text-ink">
-                          {t(form.titleKey as TranslationKey)}
-                        </p>
+                        <div className="flex items-center gap-[6px]">
+                          <p className="overflow-clip whitespace-nowrap text-[14px] font-semibold leading-[20px] tracking-[0.14px] text-ink">
+                            {t(form.titleKey as TranslationKey)}
+                          </p>
+                          {form.pdfUrl && (
+                            <span className="rounded bg-teal/10 px-[5px] py-[1px] text-[10px] font-semibold tracking-wider text-teal">
+                              PDF
+                            </span>
+                          )}
+                        </div>
                         <p className="overflow-hidden text-ellipsis whitespace-nowrap text-[12px] leading-[18px] tracking-[0.06px] text-muted">
                           {t(form.descriptionKey as TranslationKey)}
                         </p>
                       </div>
                     </div>
-                    {on ? (
-                      <span className="flex size-[24px] shrink-0 items-center justify-center rounded-full bg-navy">
-                        <FigmaImg id="09465" />
-                      </span>
-                    ) : (
-                      <FigmaImg id="9d29a" />
-                    )}
+                    <div className="flex items-center gap-[8px] shrink-0">
+                      {form.pdfUrl && (
+                        <span
+                          role="button"
+                          tabIndex={0}
+                          aria-label={`${t('formSelect.viewPdf')}: ${t(form.titleKey as TranslationKey)}`}
+                          onClick={(e) => handleOpenPdf(e, form.bankFormId)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              handleOpenPdf(e as any, form.bankFormId);
+                            }
+                          }}
+                          className="flex h-[28px] items-center rounded-full bg-teal/10 px-[10px] text-[11px] font-semibold text-teal hover:bg-teal/20 transition-colors cursor-pointer"
+                        >
+                          {t('formSelect.viewPdf')}
+                        </span>
+                      )}
+                      {on ? (
+                        <span className="flex size-[24px] shrink-0 items-center justify-center rounded-full bg-navy">
+                          <FigmaImg id="09465" />
+                        </span>
+                      ) : (
+                        <FigmaImg id="9d29a" />
+                      )}
+                    </div>
                   </button>
                 );
               })}
@@ -175,7 +227,7 @@ export default function FormSelectPage() {
           <Cta
             icon="03d99"
             disabled={!bankFormId}
-            onClick={() => navigate('/purpose')}
+            onClick={handleContinue}
             className="h-[54px] gap-[8px] rounded-[14px] bg-navy text-[14px] font-semibold leading-[20px] tracking-[0.14px] text-white shadow-cta"
           >
             {t('common.continue')}

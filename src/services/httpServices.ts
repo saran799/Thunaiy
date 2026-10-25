@@ -23,6 +23,7 @@ import type {
   OtpChallenge,
   PreferenceService,
   SavedFormService,
+  BranchService,
   Services,
 } from './types';
 
@@ -181,6 +182,12 @@ class HttpPreferenceService implements PreferenceService {
   }
 }
 
+class HttpBranchService implements BranchService {
+  getBranch(branchId: string): Promise<import('../domain/types').Branch | null> {
+    return apiRequest<import('../domain/types').Branch | null>(`/branches/${encodeURIComponent(branchId)}`);
+  }
+}
+
 export function createHttpServices(): Services {
   return {
     backend: 'http',
@@ -189,5 +196,6 @@ export function createHttpServices(): Services {
     forms: new HttpFormService(),
     savedForms: new HttpSavedFormService(),
     preferences: new HttpPreferenceService(),
+    branch: new HttpBranchService(),
   };
 }

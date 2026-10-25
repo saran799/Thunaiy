@@ -6,6 +6,7 @@ import { MockDb } from './mock/mockDb';
 import { MockFormService } from './mock/mockFormService';
 import { MockPreferenceService } from './mock/mockPreferenceService';
 import { MockSavedFormService } from './mock/mockSavedFormService';
+import { MockBranchService } from './mock/mockBranchService';
 import { buildMockCatalog, type MockCatalog } from './mock/seed';
 import type { Services } from './types';
 
@@ -26,6 +27,7 @@ export function createMockServices(overrides: ServiceOverrides = {}): Services {
     forms: new MockFormService(catalog),
     savedForms: new MockSavedFormService(db, catalog),
     preferences: new MockPreferenceService(db),
+    branch: new MockBranchService(),
   };
 }
 

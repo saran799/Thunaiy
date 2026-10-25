@@ -8,7 +8,13 @@ import { LANGUAGES } from '../domain/languages';
 import { useAppState } from '../state/AppStateContext';
 import { useServices } from '../services/ServicesProvider';
 
-export default function LanguagePage() {
+export default function LanguagePage({
+  nextRoute = '/bank',
+  backRoute = '/otp',
+}: {
+  nextRoute?: string;
+  backRoute?: string;
+}) {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
@@ -31,7 +37,7 @@ export default function LanguagePage() {
   return (
     <Screen>
       <header className="flex items-center justify-between px-[24px] pb-[16px] pt-[8px]">
-        <BackButton to={fromSettings ? '/settings' : '/otp'} icon="8b04a" />
+        <BackButton to={fromSettings ? '/settings' : backRoute} icon="8b04a" />
         <div className="flex items-center gap-[8px]">
           <span className="text-[12px] font-medium leading-[16px] tracking-[0.24px] text-muted">{t('language.step')}</span>
           <StepBars filled={1} barClass="h-[4px] w-[24px]" />
@@ -65,7 +71,7 @@ export default function LanguagePage() {
         <div className="flex flex-col items-center pt-[40px]">
           <Cta
             icon="03d99"
-            onClick={() => navigate(fromSettings ? '/settings' : '/bank')}
+            onClick={() => navigate(fromSettings ? '/settings' : nextRoute)}
             className="h-[54px] gap-[8px] rounded-[14px] bg-navy text-[14px] font-semibold leading-[20px] tracking-[0.35px] text-white shadow-cta"
           >
             {t('language.continue')}

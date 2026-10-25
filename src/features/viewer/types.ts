@@ -108,4 +108,6 @@ export interface FormDocument {
   /** Fields highlighted for the active purpose that are also mandatory. */
   requiredCount: number;
   doneCount: number;
+  pdfUrl?: string;
+  filename?: string;
 }

@@ -9,6 +9,7 @@ import type {
   PurposeApplicability,
 } from '../../domain/types';
 import type { FormFieldDefinition, FormPageSpec } from '../../features/viewer/types';
+import { getBankPdf } from '../../config/bankPdfs';
 
 /**
  * Reference dataset for the in-browser development backend.
@@ -88,6 +89,18 @@ export const FORM_TYPES: FormType[] = [
     descriptionKey: 'form.nomination.description',
     icon: '83a20',
   },
+  {
+    id: 'deposit-form',
+    titleKey: 'form.depositForm.title',
+    descriptionKey: 'form.depositForm.description',
+    icon: '9fe10',
+  },
+  {
+    id: 'fixed-deposit',
+    titleKey: 'form.fixedDeposit.title',
+    descriptionKey: 'form.fixedDeposit.description',
+    icon: '83a20',
+  },
 ];
 
 /** Purpose catalogue. Icons reuse existing exported Figma assets. */
@@ -107,9 +120,9 @@ export const PURPOSE_CATALOGUE: Record<string, { labelKey: string; shortLabelKey
 /** bankId -> formTypeIds offered by that bank. */
 export const BANK_FORM_MATRIX: Record<string, string[]> = {
   sbi: ['account-opening', 'account-closure', 'kyc-update', 'address-change', 'minor-to-major', 'nomination'],
-  hdfc: ['account-opening', 'kyc-update', 'address-change', 'nomination'],
+  hdfc: ['account-opening', 'deposit-form', 'kyc-update', 'address-change', 'nomination'],
   icici: ['address-change', 'kyc-update', 'account-closure'],
-  bob: ['account-opening', 'nomination'],
+  bob: ['account-opening', 'fixed-deposit', 'nomination'],
   canara: ['account-closure', 'kyc-update'],
   axis: ['account-opening', 'kyc-update'],
   kotak: ['account-opening', 'nomination'],
@@ -133,23 +146,15 @@ export const FORM_PURPOSE_MATRIX: Record<string, string[]> = {
 export const SBI_ACCOUNT_OPENING_BANK_FORM_ID = 'sbi::account-opening';
 export const SBI_AOF_VERSION_ID = 'sbi-aof-v1';
 export const SBI_AOF_VERSION_LABEL = 'SBI-AOF-VER4-DEC2023';
-export const SBI_AOF_ARTWORK_HASH = 'sha256:sbi-aof-ver4-dec2023:page1+page2peek';
+export const SBI_AOF_ARTWORK_HASH = 'sha256:c21b16969041a8fe5e4e672fe6a7cd9bf7a1f3967b235029a42b58acd71afdd9';
 
 export const SBI_AOF_PAGES: FormPageSpec[] = [
   {
     page: 1,
-    width: 366,
-    height: 537.25,
+    width: 595.28,
+    height: 841.89,
     artwork: 'sbi-aof-page-1',
     sheetClass: 'rounded-[2px] bg-white shadow-sheet',
-  },
-  {
-    page: 2,
-    width: 366,
-    height: 186,
-    artwork: 'sbi-aof-page-2-peek',
-    sheetClass: 'rounded-[2px] bg-white opacity-85 shadow-peek',
-    peek: true,
   },
 ];
 
@@ -164,15 +169,15 @@ interface FieldSeed {
 }
 
 const SBI_AOF_FIELDS: FieldSeed[] = [
-  { fieldKey: 'account-type', x: 16, y: 110.88, width: 221.333, height: 38.99, required: true, labelKey: 'field.accountType.label' },
-  { fieldKey: 'photo', x: 241.333, y: 110.88, width: 108.667, height: 106, required: true, labelKey: 'field.photo.label' },
-  { fieldKey: 'full-name', x: 16, y: 220.88, width: 334, height: 64.99, required: true, labelKey: 'field.fullName.label' },
-  { fieldKey: 'date-of-birth', x: 16, y: 289.5, width: 136.833, height: 45.5, required: true, labelKey: 'field.dob.label' },
-  { fieldKey: 'mobile', x: 156.833, y: 289.5, width: 193.167, height: 46.5, required: true, labelKey: 'field.mobile.label' },
-  { fieldKey: 'address', x: 16, y: 391.75, width: 334, height: 63.135, required: true, labelKey: 'field.address.label' },
-  { fieldKey: 'staff-senior', x: 16, y: 153.86, width: 221.333, height: 43.375, required: false, labelKey: 'field.staffSenior.label' },
-  { fieldKey: 'minor-guardian', x: 16, y: 339.63, width: 334, height: 48.74, required: true, labelKey: 'field.minorGuardian.label' },
-  { fieldKey: 'branch-use', x: 16, y: 457.88, width: 334, height: 46, required: false, labelKey: 'field.branchUse.label' },
+  { fieldKey: 'account-type', x: 24, y: 184, width: 260, height: 28, required: true, labelKey: 'field.accountType.label' },
+  { fieldKey: 'photo', x: 440, y: 95, width: 130, height: 115, required: true, labelKey: 'field.photo.label' },
+  { fieldKey: 'full-name', x: 24, y: 228, width: 546, height: 32, required: true, labelKey: 'field.fullName.label' },
+  { fieldKey: 'date-of-birth', x: 24, y: 280, width: 150, height: 26, required: true, labelKey: 'field.dob.label' },
+  { fieldKey: 'mobile', x: 24, y: 770, width: 205, height: 26, required: true, labelKey: 'field.mobile.label' },
+  { fieldKey: 'address', x: 24, y: 400, width: 546, height: 95, required: true, labelKey: 'field.address.label' },
+  { fieldKey: 'staff-senior', x: 340, y: 190, width: 230, height: 26, required: false, labelKey: 'field.staffSenior.label' },
+  { fieldKey: 'minor-guardian', x: 24, y: 374, width: 546, height: 32, required: true, labelKey: 'field.minorGuardian.label' },
+  { fieldKey: 'branch-use', x: 24, y: 138, width: 546, height: 38, required: false, labelKey: 'field.branchUse.label' },
 ];
 
 /**
@@ -426,7 +431,16 @@ function buildBankForms(): BankForm[] {
   const rows: BankForm[] = [];
   for (const [bankId, formTypeIds] of Object.entries(BANK_FORM_MATRIX)) {
     for (const formTypeId of formTypeIds) {
-      rows.push({ id: `${bankId}::${formTypeId}`, bankId, formTypeId, isActive: true });
+      const id = `${bankId}::${formTypeId}`;
+      const pdf = getBankPdf(id);
+      rows.push({
+        id,
+        bankId,
+        formTypeId,
+        isActive: true,
+        pdfUrl: pdf?.publicUrl,
+        filename: pdf?.filename,
+      });
     }
   }
   return rows;
@@ -435,16 +449,17 @@ function buildBankForms(): BankForm[] {
 function buildFormVersions(bankForms: BankForm[]): FormVersion[] {
   return bankForms.map((bankForm) => {
     const isSbiAof = bankForm.id === SBI_ACCOUNT_OPENING_BANK_FORM_ID;
+    const pdf = getBankPdf(bankForm.id);
     return {
       id: isSbiAof ? SBI_AOF_VERSION_ID : `${bankForm.id}::v1`,
       bankFormId: bankForm.id,
-      // Only the measured SBI revision has a printable label so far; the other
-      // rows exist so the catalogue, search and filters are complete, and are
-      // surfaced to the user as "not available yet".
-      versionLabel: isSbiAof ? SBI_AOF_VERSION_LABEL : 'REV-PENDING',
+      // If a physical PDF exists, use its filename as the version label.
+      versionLabel: isSbiAof ? SBI_AOF_VERSION_LABEL : (pdf ? pdf.filename : 'REV-PENDING'),
       artworkHash: isSbiAof ? SBI_AOF_ARTWORK_HASH : 'sha256:pending',
       status: 'published' as const,
       publishedAt: isSbiAof ? '2023-12-01T00:00:00.000Z' : '2024-01-01T00:00:00.000Z',
+      pdfUrl: pdf?.publicUrl,
+      filename: pdf?.filename,
     };
   });
 }

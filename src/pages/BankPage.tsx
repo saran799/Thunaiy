@@ -14,7 +14,13 @@ import { useAsync } from '../hooks/useAsync';
 import { isApiError } from '../services/errors';
 import { errorMessageKey } from '../services/errorMessages';
 
-export default function BankPage() {
+export default function BankPage({
+  nextRoute = '/form',
+  backRoute = '/language',
+}: {
+  nextRoute?: string;
+  backRoute?: string;
+}) {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { state, selectBank } = useAppState();
@@ -48,7 +54,7 @@ export default function BankPage() {
       <main className="flex flex-1 flex-col px-[24px] pb-[24px]">
         <div className="flex h-[64px] items-start pb-[16px] pt-[8px]">
           <div className="flex h-[40px] w-full items-center justify-between">
-            <BackButton to="/language" icon="fe25d" />
+            <BackButton to={backRoute} icon="fe25d" />
             <div className="flex flex-col items-end gap-[6px]">
               <span className="text-[11px] font-medium leading-[14px] tracking-[0.44px] text-muted">{t('bank.step')}</span>
               <div className="w-[96px]">
@@ -150,7 +156,7 @@ export default function BankPage() {
             icon="77060"
             iconClassName="ml-[6px]"
             disabled={!selectedId}
-            onClick={() => navigate('/form')}
+            onClick={() => navigate(nextRoute)}
             className="h-[54px] rounded-[12px] bg-navy text-[14px] font-semibold leading-[20px] text-white drop-shadow-card"
           >
             {t('common.continue')}
