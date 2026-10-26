@@ -49,6 +49,13 @@ export default function OtpPage() {
     return () => window.clearInterval(timer);
   }, [challenge]);
 
+  /* clean up any active reCAPTCHA verifiers on unmount */
+  useEffect(() => {
+    return () => {
+      services.auth.cleanupRecaptcha?.();
+    };
+  }, [services.auth]);
+
   const setDigitAt = useCallback((index: number, value: string) => {
     setDigits((current) => {
       const next = [...current];
@@ -134,7 +141,7 @@ export default function OtpPage() {
   };
 
   const handleResend = async () => {
-    if (!challenge || secondsLeft > 0) return;
+    if (!challenge || secondsLeft > 0 || verifying) return;
     setError(null);
     try {
       const next = await services.auth.resendOtp({ challengeId: challenge.challengeId });

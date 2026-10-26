@@ -31,7 +31,7 @@ describe('Bank PDF Integration', () => {
         // Verify PDF signature (%PDF-)
         const fd = fs.openSync(diskPath, 'r');
         const buffer = Buffer.alloc(5);
-        fs.readSync(fd, buffer, 0, 5, 0);
+        fs.readSync(fd, buffer as any, 0, 5, 0);
         fs.closeSync(fd);
         expect(buffer.toString('utf-8')).toBe('%PDF-');
       }

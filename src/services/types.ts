@@ -41,13 +41,15 @@ export interface OtpChallenge {
 
 export interface AuthService {
   /** Identifies the implementation so the UI can label development-only affordances. */
-  readonly kind: 'dev' | 'api';
+  readonly kind: 'dev' | 'api' | 'firebase';
   requestOtp(input: { name: string; phoneE164: string }): Promise<OtpChallenge>;
   resendOtp(input: { challengeId: string }): Promise<OtpChallenge>;
   verifyOtp(input: { challengeId: string; code: string }): Promise<Session>;
   /** Validates a stored token on app start; rejects with `unauthorized`. */
   restoreSession(token: string): Promise<Session>;
   logout(token: string): Promise<void>;
+  /** Optional lifecycle cleanup for reCAPTCHA widgets and containers. */
+  cleanupRecaptcha?(): void;
 }
 
 /** Bank + form + form type, resolved together for the flow screens. */
@@ -122,7 +124,7 @@ export interface BranchService {
 }
 
 export interface Services {
-  backend: 'dev' | 'http';
+  backend: 'dev' | 'http' | 'firebase';
   auth: AuthService;
   catalog: CatalogService;
   forms: FormService;

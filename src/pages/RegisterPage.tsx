@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Screen from '../components/Screen';
 import FigmaImg from '../components/FigmaImg';
@@ -21,10 +21,17 @@ export default function RegisterPage() {
   const [errors, setErrors] = useState<{ name?: string; phone?: string; form?: string }>({});
   const [submitting, setSubmitting] = useState(false);
 
+  useEffect(() => {
+    return () => {
+      services.auth.cleanupRecaptcha?.();
+    };
+  }, [services.auth]);
+
   if (isAuthenticated) return <Navigate to="/home" replace />;
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    if (submitting) return;
     const trimmedName = name.trim();
     const digits = phone.replace(/\D/g, '');
     const nextErrors: { name?: string; phone?: string; form?: string } = {};
